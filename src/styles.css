@@ -1,0 +1,173 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: 'Cormorant Garamond', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sand: var(--sand);
+  --color-dune: var(--dune);
+  --color-cocoa: var(--cocoa);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+}
+
+:root {
+  /* Saharan / off-white minimal palette */
+  --cream: oklch(0.962 0.018 85);        /* #F5F0E8 off-white */
+  --sand: oklch(0.905 0.038 80);         /* warm sand */
+  --dune: oklch(0.78 0.06 70);           /* dune */
+  --cocoa: oklch(0.42 0.06 50);          /* warm cocoa */
+  --ink: oklch(0.18 0.012 60);           /* charcoal */
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: var(--cream);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--cream);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --muted-foreground: oklch(0.42 0.02 60);
+  --accent: var(--cocoa);
+  --accent-foreground: var(--cream);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.85 0.025 75);
+  --input: oklch(0.85 0.025 75);
+  --ring: var(--cocoa);
+  --radius: 0px;
+}
+
+.dark { --background: var(--ink); --foreground: var(--cream); }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  ::selection { background: var(--ink); color: var(--cream); }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-sans { font-family: var(--font-sans); }
+  .tracking-luxe { letter-spacing: 0.32em; }
+  .tracking-wide-luxe { letter-spacing: 0.18em; }
+
+  .editorial-rule {
+    height: 1px;
+    background: var(--ink);
+    transform-origin: left center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom cursor — desktop only */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Film grain overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+}
+.film-grain::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: transparent;
+  filter: url(#kacao-grain);
+}
+
+/* Sticky story layout */
+.sticky-story { display: block; }
+@media (min-width: 768px) {
+  .sticky-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+  }
+  .sticky-story .sticky-image {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+.sticky-story .sticky-image {
+  height: 80vh;
+  overflow: hidden;
+}
+
+/* Allergen tag pill */
+.tag-pill {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  border: 1px solid var(--border);
+  padding: 3px 9px 2px;
+  border-radius: 999px;
+  line-height: 1.4;
+}
