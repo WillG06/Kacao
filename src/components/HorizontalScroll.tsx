@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
@@ -16,13 +17,22 @@ const panels = [
 
 export function HorizontalScroll() {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  // Move from 0 to negative width of (panels-1 panels worth)
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(panels.length - 1) * (100 / panels.length) * 1.0}%`]);
+  // Each panel is 90vw on mobile, 80vw on desktop. Total track = panels * panelVw.
+  // We need to translate by (totalVw - 100vw) so the last panel ends at the right edge.
+  const panelVw = isMobile ? 90 : 80;
+  const distanceVw = panels.length * panelVw - 100;
+  const x = useTransform(scrollYProgress, [0, 1], ["0vw", `-${distanceVw}vw`]);
 
   return (
-    <section ref={ref} className="relative bg-ink text-cream" style={{ height: `${panels.length * 100}vh` }} aria-label="A day at KACAO">
+    <section
+      ref={ref}
+      className="relative bg-ink text-cream"
+      style={{ height: `${(distanceVw / 100 + 1) * 100}vh` }}
+      aria-label="A day at KACAO"
+    >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* Header */}
         <div className="absolute top-0 left-0 right-0 z-20 px-6 md:px-12 pt-10 md:pt-14 flex items-center justify-between text-cream/70">
@@ -37,7 +47,7 @@ export function HorizontalScroll() {
           {panels.map((p, i) => (
             <article
               key={p.n}
-              className="relative shrink-0 h-full w-screen md:w-[80vw] grid md:grid-cols-2 items-stretch border-r border-cream/10"
+              className="relative shrink-0 h-full w-[90vw] md:w-[80vw] grid grid-rows-[45%_55%] md:grid-rows-1 md:grid-cols-2 items-stretch border-r border-cream/10"
             >
               <div className="relative overflow-hidden bg-ink/40">
                 <img
@@ -48,15 +58,15 @@ export function HorizontalScroll() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-transparent to-ink/60" aria-hidden />
               </div>
-              <div className="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 bg-ink">
+              <div className="flex flex-col justify-center px-6 md:px-16 lg:px-24 py-10 md:py-20 bg-ink">
                 <div className="text-[10px] tracking-luxe uppercase text-cream/50 tabular-nums">Hour — {p.n}</div>
-                <h3 className="mt-8 font-display text-[clamp(3rem,7vw,7rem)] leading-[0.9] text-cream">
+                <h3 className="mt-4 md:mt-8 font-display text-[clamp(2.25rem,7vw,7rem)] leading-[0.9] text-cream">
                   {p.t}.
                 </h3>
-                <p className="mt-10 max-w-md text-base md:text-lg text-cream/75 leading-relaxed">
+                <p className="mt-5 md:mt-10 max-w-md text-sm md:text-lg text-cream/75 leading-relaxed">
                   {p.d}
                 </p>
-                <div className="mt-12 text-[10px] tracking-luxe uppercase text-cream/40 tabular-nums">
+                <div className="mt-6 md:mt-12 text-[10px] tracking-luxe uppercase text-cream/40 tabular-nums">
                   {String(i + 1).padStart(2, "0")} / {String(panels.length).padStart(2, "0")}
                 </div>
               </div>

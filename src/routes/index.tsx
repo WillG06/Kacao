@@ -88,8 +88,8 @@ function HomePage() {
             transition={{ duration: 2.6, ease: [0.16, 1, 0.3, 1] }}
           />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/35 to-ink/20" aria-hidden />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/35 via-transparent to-transparent" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/40" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/55 via-ink/10 to-transparent" aria-hidden />
 
         <motion.div
           style={reduce ? undefined : { y: fgY }}
@@ -108,8 +108,8 @@ function HomePage() {
             initial={reduce ? { opacity: 1 } : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-4 font-display text-cream leading-[0.85] tracking-[-0.02em]"
-            style={{ fontSize: "clamp(4rem, 13vw, 12rem)" }}
+            className="mt-4 font-wordmark text-cream leading-[0.82]"
+            style={{ fontSize: "clamp(3.75rem, 14vw, 13rem)", textShadow: "0 2px 30px rgba(0,0,0,0.35)" }}
           >
             KACAO
           </motion.h1>
@@ -135,7 +135,7 @@ function HomePage() {
       </section>
 
       {/* MARQUEE */}
-      <section className="py-16 md:py-24 overflow-hidden bg-cream">
+      <section className="py-10 md:py-24 overflow-hidden bg-cream">
         <div className="flex whitespace-nowrap gap-16 text-[clamp(2.5rem,7vw,6rem)] font-display leading-none text-ink/90">
           <motion.div
             className="flex shrink-0 gap-16"
@@ -163,12 +163,12 @@ function HomePage() {
       </div>
 
       {/* SIGNATURES */}
-      <FadeInSection as="section" className="py-28 md:py-36 px-6 md:px-12">
+      <FadeInSection as="section" className="py-20 md:py-36 px-6 md:px-12">
         <div className="mx-auto max-w-[1600px]">
-          <div className="grid md:grid-cols-[1fr_1fr] gap-12 md:gap-24 items-end mb-16 md:mb-24">
+          <div className="grid md:grid-cols-[1fr_1fr] gap-8 md:gap-24 items-end mb-12 md:mb-24">
             <div>
               <div className="text-[10px] tracking-luxe uppercase text-muted-foreground">I — Signatures</div>
-              <h2 className="mt-6 font-display text-5xl md:text-7xl leading-[0.95]">
+              <h2 className="mt-4 md:mt-6 font-display text-4xl sm:text-5xl md:text-7xl leading-[0.95]">
                 Four things<br />we are known for.
               </h2>
             </div>
@@ -177,7 +177,7 @@ function HomePage() {
             </p>
           </div>
 
-          <ul className="grid grid-cols-2 lg:grid-cols-4 gap-y-14 gap-x-8">
+          <ul className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 md:gap-y-14 gap-x-5 md:gap-x-8">
             {signatures.map((s, i) => (
               <motion.li
                 key={s.name}
@@ -186,7 +186,7 @@ function HomePage() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="relative h-56 sm:h-64 flex items-end justify-center mb-5">
+                <div className="relative h-40 sm:h-56 md:h-64 flex items-end justify-center mb-4 md:mb-5">
                   <motion.img
                     src={s.img}
                     alt={s.name}
@@ -229,12 +229,12 @@ function HomePage() {
       </div>
 
       {/* GALLERY */}
-      <FadeInSection as="section" className="py-28 md:py-36 px-6 md:px-12">
+      <FadeInSection as="section" className="py-20 md:py-36 px-6 md:px-12">
         <div className="mx-auto max-w-[1600px]">
-          <div className="flex items-end justify-between mb-12 md:mb-20">
+          <div className="flex items-end justify-between mb-10 md:mb-20">
             <div>
               <div className="text-[10px] tracking-luxe uppercase text-muted-foreground">III — Notebook</div>
-              <h2 className="mt-4 font-display text-4xl md:text-6xl">Things we are<br />proud of.</h2>
+              <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-6xl">Things we are<br />proud of.</h2>
             </div>
             <p className="hidden md:block max-w-xs text-sm text-muted-foreground leading-relaxed">
               A working notebook of recent bakes, the counter at light, and small moments worth keeping.
@@ -276,14 +276,14 @@ function HomePage() {
       </div>
 
       {/* PROCESS */}
-      <section className="py-32 md:py-44 px-6 md:px-12 bg-sand/40">
-        <div className="mx-auto max-w-[1600px] grid md:grid-cols-[1fr_1.2fr] gap-16 md:gap-24 items-start">
+      <section className="py-20 md:py-44 px-6 md:px-12 bg-sand/40">
+        <div className="mx-auto max-w-[1600px] grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-24 items-start">
           <div className="md:sticky md:top-32">
             <Reveal>
               <div className="text-[10px] tracking-luxe uppercase text-muted-foreground">IV — Process</div>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="mt-6 font-display text-5xl md:text-7xl leading-[0.95]">
+              <h2 className="mt-4 md:mt-6 font-display text-4xl sm:text-5xl md:text-7xl leading-[0.95]">
                 Four steps,<br /><em className="not-italic text-cocoa">no shortcuts.</em>
               </h2>
             </Reveal>
@@ -291,7 +291,7 @@ function HomePage() {
               Most of what you taste here happens before you arrive. The day before, in fact.
             </Reveal>
           </div>
-          <ul className="space-y-12">
+          <ul className="space-y-8 md:space-y-12">
             {process.map((p, i) => (
               <motion.li
                 key={p.n}
@@ -299,12 +299,12 @@ function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="grid grid-cols-[auto_1fr] gap-8 border-t border-ink/15 pt-8"
+                className="grid grid-cols-[auto_1fr] gap-6 md:gap-8 border-t border-ink/15 pt-6 md:pt-8"
               >
                 <span className="text-[10px] tracking-luxe uppercase text-muted-foreground tabular-nums">{p.n}</span>
                 <div>
-                  <h3 className="font-display text-3xl md:text-4xl">{p.t}</h3>
-                  <p className="mt-3 text-base text-ink/75 leading-relaxed max-w-md">{p.d}</p>
+                  <h3 className="font-display text-2xl md:text-4xl">{p.t}</h3>
+                  <p className="mt-2 md:mt-3 text-sm md:text-base text-ink/75 leading-relaxed max-w-md">{p.d}</p>
                 </div>
               </motion.li>
             ))}
@@ -317,10 +317,10 @@ function HomePage() {
       </div>
 
       {/* PRESS */}
-      <FadeInSection as="section" className="py-32 md:py-40 px-6 md:px-12">
+      <FadeInSection as="section" className="py-20 md:py-40 px-6 md:px-12">
         <div className="mx-auto max-w-[1600px]">
           <div className="text-[10px] tracking-luxe uppercase text-muted-foreground text-center">V — Press</div>
-          <div className="mt-16 grid md:grid-cols-3 gap-12 md:gap-16">
+          <div className="mt-10 md:mt-16 grid md:grid-cols-3 gap-10 md:gap-16">
             {press.map((p, i) => (
               <motion.figure
                 key={p.source}
@@ -330,7 +330,7 @@ function HomePage() {
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="text-center"
               >
-                <blockquote className="font-display text-2xl md:text-3xl leading-snug text-ink">
+                <blockquote className="font-display text-xl md:text-3xl leading-snug text-ink">
                   "{p.quote}"
                 </blockquote>
                 <figcaption className="mt-6 text-[10px] tracking-luxe uppercase text-muted-foreground">
@@ -346,10 +346,10 @@ function HomePage() {
       <InstagramFeed />
 
       {/* CTA */}
-      <FadeInSection as="section" className="relative py-32 md:py-44 px-6 md:px-12 bg-ink text-cream text-center overflow-hidden">
+      <FadeInSection as="section" className="relative py-24 md:py-44 px-6 md:px-12 bg-ink text-cream text-center overflow-hidden">
         <div className="relative mx-auto max-w-[1100px]">
           <div className="text-[10px] tracking-luxe uppercase text-cream/60">Open today</div>
-          <h2 className="mt-6 font-display text-[clamp(2.75rem,7vw,6rem)] leading-[0.95]">
+          <h2 className="mt-4 md:mt-6 font-display text-[clamp(2.25rem,7vw,6rem)] leading-[0.95]">
             Come and find us<br /><em className="not-italic text-sand">at the counter.</em>
           </h2>
           <p className="mt-8 max-w-md mx-auto text-sm text-cream/70">
